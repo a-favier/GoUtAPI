@@ -13,8 +13,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 /** On importe les routers */
-const userRouter = require('./app/routers/userRouter');
 const authRouter = require('./app/routers/authRouter');
+
+const userRouter = require('./app/routers/userRouter');
+const categorieRouter = require('./app/routers/categorieRouter');
+const clienteleRouter = require('./app/routers/clienteleRouter');
+const eventRouter = require('./app/routers/eventRouter');
+const participationRouter = require('./app/routers/participationRouter');
+const tarifRouter = require('./app/routers/tarifRouter');
 
 /** On importe les middlewares */
 
@@ -23,7 +29,14 @@ const apiRouter = express.Router();
 
 /** On implémente le router API */
 apiRouter.use('/auth', authRouter);
+
 apiRouter.use('/user', userRouter);
+apiRouter.use('/categorie', categorieRouter);
+apiRouter.use('/clientele', clienteleRouter);
+apiRouter.use('/event', eventRouter);
+apiRouter.use('/participation', participationRouter);
+apiRouter.use('/tarif', tarifRouter);
+
 
 app.use('/api', apiRouter);
 

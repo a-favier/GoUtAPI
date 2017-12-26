@@ -1,6 +1,6 @@
-var db = require('../config/database');
+const db = require('../config/database');
 
-var user={
+const user={
 
     getAllUser:function(callback){
         return db.query("SELECT `user`.`firstName`, `user`.`lastName`, `user`.`pseudo`, `user`.`dateBorn`, `user`.`mail`, `user`.`tel` FROM `gout`.`user`",callback);

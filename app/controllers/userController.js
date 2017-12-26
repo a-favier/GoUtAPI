@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt-nodejs');
 /** On importe les modèles */
 const user = require('../models/user');
 
-/** On déclare les fonctions liées aux animaux */
+/** On déclare les fonctions liées aux user */
 const getUsers = (req, res) => {
     user.getAllUser(function (err, rows) {
         if(err)
