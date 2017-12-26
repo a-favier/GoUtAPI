@@ -1,0 +1,19 @@
+{
+  "name": "GoUtAPI",
+  "version": "0.0.0",
+  "description": "API pour l'application mobile GoUt",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "Alexis FAVIER",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
+    "mysql": "^2.15.0"
+  }
+}
