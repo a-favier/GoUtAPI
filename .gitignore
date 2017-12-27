@@ -1,2 +1,4 @@
 /.idea
 /node_modules
+/log/access.log
+config.ini

@@ -5,8 +5,8 @@ const bcrypt = require('bcrypt-nodejs');
 const user = require('../models/user');
 
 /** On déclare les fonctions liées aux user */
-const getUsers = (req, res) => {
-    user.getAllUser(function (err, rows) {
+const getMe = (req, res) => {
+    user.getMe(req.params.pseudo, function (err, rows) {
         if(err)
         {
             res.status(400).json(err);
@@ -20,6 +20,18 @@ const getUsers = (req, res) => {
 
 const getUser = (req, res) => {
     user.getUserByPseudo(req.params.pseudo, function (err, rows) {
+        if(err)
+        {
+            res.status(400).json(err);
+        }
+        else{
+            res.status(200).json(rows);
+        }
+    })
+};
+
+const getUsersLikePseudo = (req, res) => {
+    user.getUsersLikePseudo(req.params.pseudo, function (err, rows) {
         if(err)
         {
             res.status(400).json(err);
@@ -44,29 +56,77 @@ const postUser = (req, res) => {
     })
 };
 
-const putUser = (req, res) => {
-    user.getUserByToken(req.headers['x-auth-token'], function (err, rows) {
-        if(rows[0].pseudo === req.params.pseudo){
-            user.updateUser(req.params.pseudo,req.body, function (err, rows) {
-                if(err)
-                {
-                    res.status(400).json(err);
-                }
-                else{
-                    res.status(200).json(rows);
-                }
-            })
-        }else{
-            res.status(401).send('You can modify only you');
+const putNames = (req, res) => {
+    user.changeNames(req.params.pseudo, req.body, function (err, rows) {
+        if(err)
+        {
+            res.status(400).json(err);
         }
-    });
+        else{
+            res.status(201).json(rows);
+        }
+    })
+};
 
+const putMail = (req, res) => {
+    user.changeMail(req.params.pseudo, req.body, function (err, rows) {
+        if(err)
+        {
+            res.status(400).json(err);
+        }
+        else{
+            res.status(201).json(rows);
+        }
+    })
+};
+
+const putBorn = (req, res) => {
+    user.changeBorn(req.params.pseudo, req.body, function (err, rows) {
+        if(err)
+        {
+            res.status(400).json(err);
+        }
+        else{
+            res.status(201).json(rows);
+        }
+    })
+};
+
+const putTel = (req, res) => {
+    user.changeTel(req.params.pseudo, req.body, function (err, rows) {
+        if(err)
+        {
+            res.status(400).json(err);
+        }
+        else{
+            res.status(201).json(rows);
+        }
+    })
+};
+
+const putPassword = (req, res) => {
+    req.body.password = bcrypt.hashSync(req.body.password, null);
+
+    user.changePassword(req.params.pseudo, req.body, function (err, rows) {
+        if(err)
+        {
+            res.status(400).json(err);
+        }
+        else{
+            res.status(201).json(rows);
+        }
+    })
 };
 
 /** On exporte le controller */
 module.exports = {
-    getUsers: getUsers,
+    getMe: getMe,
     getUser: getUser,
+    getUsersLikePseudo: getUsersLikePseudo,
     postUser: postUser,
-    putUser: putUser
+    putNames: putNames,
+    putMail: putMail,
+    putBorn: putBorn,
+    putTel: putTel,
+    putPassword: putPassword
 };

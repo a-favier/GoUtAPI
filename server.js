@@ -1,12 +1,18 @@
 /** On importe les librairies */
 const express = require('express');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const fs = require('fs');
 
 /** On importe fichiers de configuration */
 const databaseConfig = require('./app/config/database');
 
 /** On instancie l'application */
 const app = express();
+
+/** On crée et instancie le looger **/
+const logFile = fs.createWriteStream('./log/access.log',{flags: 'a'});
+app.use(morgan('combined', {stream: logFile}));
 
 /** On applique des middlewares */
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -43,7 +49,7 @@ app.use('/api', apiRouter);
 /** Connexion à la BDD **/
 databaseConfig.connect(function(err) {
     if (err) throw err;
-    console.log("Connecté a la BDD GOUT");
+    console.log("Connecté a la BDD 'GoUt'");
 });
 
 /** On démarre l'application */
