@@ -6,7 +6,7 @@ const clientele = require('../models/clientele');
 
 /** On déclare les fonctions liées aux categorie */
 const getClientele = (req, res) => {
-    clientele.getAllClientele(function (err, rows) {
+    clientele.getAllClientele((err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -19,7 +19,7 @@ const getClientele = (req, res) => {
 };
 
 const getEventClientele = (req, res) => {
-    clientele.getClienteleByEvent(req.params.idEvent, function (err, rows) {
+    clientele.getClienteleByEvent(req.params.idEvent, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -31,7 +31,7 @@ const getEventClientele = (req, res) => {
 };
 
 const postClientele = (req, res) => {
-    clientele.addEventClientele(req.params.idEvent, req.body, function (err, rows) {
+    clientele.addEventClientele(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -43,7 +43,7 @@ const postClientele = (req, res) => {
 };
 
 const deleteClientele = (req, res) => {
-    clientele.deleteEventClientele(req.params.idEvent, req.body, function (err, rows) {
+    clientele.deleteEventClientele(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);

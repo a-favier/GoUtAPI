@@ -6,7 +6,7 @@ const participation = require('../models/participation');
 
 /** On déclare les fonctions liées aux categorie */
 const getEventParticipation = (req, res) => {
-    participation.getEventParticipation(req.params.idEvent, function (err, rows) {
+    participation.getEventParticipation(req.params.idEvent, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -19,7 +19,7 @@ const getEventParticipation = (req, res) => {
 };
 
 const getUserParticipation = (req, res) => {
-    participation.getUserParticipation(req.params.pseudo, function (err, rows) {
+    participation.getUserParticipation(req.params.pseudo, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -31,7 +31,7 @@ const getUserParticipation = (req, res) => {
 };
 
 const getUserParticipationByEvent = (req, res) => {
-    participation.getUserParticipationByEvent(req.params.idEvent, req.params.pseudo, function (err, rows) {
+    participation.getUserParticipationByEvent(req.params.idEvent, req.params.pseudo, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -43,7 +43,7 @@ const getUserParticipationByEvent = (req, res) => {
 };
 
 const postParticipation = (req, res) => {
-    participation.addParticipation(req.params.pseudo, req.body, function (err, rows) {
+    participation.addParticipation(req.params.pseudo, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -55,7 +55,7 @@ const postParticipation = (req, res) => {
 };
 
 const deleteParticipation = (req, res) => {
-    participation.removeParticipation(req.params.pseudo, req.body, function (err, rows) {
+    participation.removeParticipation(req.params.pseudo, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);

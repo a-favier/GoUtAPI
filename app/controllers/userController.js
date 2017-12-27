@@ -6,7 +6,7 @@ const user = require('../models/user');
 
 /** On déclare les fonctions liées aux user */
 const getMe = (req, res) => {
-    user.getMe(req.params.pseudo, function (err, rows) {
+    user.getMe(req.params.pseudo, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -19,7 +19,7 @@ const getMe = (req, res) => {
 };
 
 const getUser = (req, res) => {
-    user.getUserByPseudo(req.params.pseudo, function (err, rows) {
+    user.getUserByPseudo(req.params.pseudo, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -31,7 +31,7 @@ const getUser = (req, res) => {
 };
 
 const getUsersLikePseudo = (req, res) => {
-    user.getUsersLikePseudo(req.params.pseudo, function (err, rows) {
+    user.getUsersLikePseudo(req.params.pseudo, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -45,7 +45,7 @@ const getUsersLikePseudo = (req, res) => {
 const postUser = (req, res) => {
     req.body.password = bcrypt.hashSync(req.body.password, null);
 
-    user.addUser(req.body, function (err, rows) {
+    user.addUser(req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -57,7 +57,7 @@ const postUser = (req, res) => {
 };
 
 const putNames = (req, res) => {
-    user.changeNames(req.params.pseudo, req.body, function (err, rows) {
+    user.changeNames(req.params.pseudo, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -69,7 +69,7 @@ const putNames = (req, res) => {
 };
 
 const putMail = (req, res) => {
-    user.changeMail(req.params.pseudo, req.body, function (err, rows) {
+    user.changeMail(req.params.pseudo, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -81,7 +81,7 @@ const putMail = (req, res) => {
 };
 
 const putBorn = (req, res) => {
-    user.changeBorn(req.params.pseudo, req.body, function (err, rows) {
+    user.changeBorn(req.params.pseudo, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -93,7 +93,7 @@ const putBorn = (req, res) => {
 };
 
 const putTel = (req, res) => {
-    user.changeTel(req.params.pseudo, req.body, function (err, rows) {
+    user.changeTel(req.params.pseudo, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -107,7 +107,7 @@ const putTel = (req, res) => {
 const putPassword = (req, res) => {
     req.body.password = bcrypt.hashSync(req.body.password, null);
 
-    user.changePassword(req.params.pseudo, req.body, function (err, rows) {
+    user.changePassword(req.params.pseudo, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);

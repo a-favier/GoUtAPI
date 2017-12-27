@@ -6,7 +6,7 @@ const categorie = require('../models/categorie');
 
 /** On déclare les fonctions liées aux categorie */
 const getCategories = (req, res) => {
-    categorie.getAllCategorie(function (err, rows) {
+    categorie.getAllCategorie((err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -19,7 +19,7 @@ const getCategories = (req, res) => {
 };
 
 const getEventCategorie = (req, res) => {
-    categorie.getCategorieByEvent(req.params.idEvent, function (err, rows) {
+    categorie.getCategorieByEvent(req.params.idEvent, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -31,7 +31,7 @@ const getEventCategorie = (req, res) => {
 };
 
 const postCategorie = (req, res) => {
-    categorie.addEventCategorie(req.params.idEvent, req.body, function (err, rows) {
+    categorie.addEventCategorie(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -43,7 +43,7 @@ const postCategorie = (req, res) => {
 };
 
 const deleteCategorie = (req, res) => {
-    categorie.deleteEventCategorie(req.params.idEvent, req.body, function (err, rows) {
+    categorie.deleteEventCategorie(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);

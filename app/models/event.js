@@ -1,34 +1,34 @@
 const db = require('../config/database');
 
 const event={
-    getEvent:function(idEvent, callback){
+    getEvent:(idEvent, callback) => {
         return db.query("SELECT `event`.`id`, `event`.`pseudo_organizer`, `event`.`name`,`event`.`booking`, `event`.`dateStart`,`event`.`dateEnd`, `event`.`country`, `event`.`city`, `event`.`postalCode`, `event`.`adresse`, `event`.`lat`, `event`.`lng`, `event`.`description`, `event`.`active` FROM `gout`.`event` WHERE id = ?",[idEvent],callback);
     },
-    getEventByUser:function(pseudo,callback){
+    getEventByUser:(pseudo,callback) => {
         return db.query("SELECT `event`.`id`, `event`.`name` FROM `gout`.`event` WHERE pseudo_organizer = ?",[pseudo],callback);
     },
-    postEvent:function(pseudo, event,callback){
+    postEvent:(pseudo, event,callback) => {
         return db.query("INSERT INTO `gout`.`event` (`pseudo_organizer`, `name`, `booking`, `dateStart`, `dateEnd`, `country`, `city`, `postalCode`, `adresse`, `lat`, `lng`, `description`, `active`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",[pseudo, event.name, event.booking, event.dateStart, event.dateEnd, event.country, event.city, event.postalCode, event.adresse, event.lat, event.lng, event.description, event.active],callback);
     },
-    changeActive:function(idEvent, event, callback){
+    changeActive:(idEvent, event, callback) => {
         return db.query("UPDATE `gout`.`event` SET `active` = ? WHERE `id` = ?", [event.active, idEvent], callback);
     },
-    changeBooking:function(idEvent, event, callback){
+    changeBooking:(idEvent, event, callback) => {
         return db.query("UPDATE `gout`.`event` SET `booking` = ? WHERE `id` = ?", [event.booking, idEvent], callback);
     },
-    changeDecription:function(idEvent, event, callback){
+    changeDecription:(idEvent, event, callback) => {
         return db.query("UPDATE `gout`.`event` SET `description` = ? WHERE `id` = ?", [event.decription, idEvent], callback);
     },
-    changelocal:function(idEvent, event, callback){
+    changelocal:(idEvent, event, callback) => {
         return db.query("UPDATE `gout`.`event` SET `country` = ?, `city` = ?, `postalCode` = ?, `adresse` = ?, `lat` = ?, `lng` = ? WHERE `id` = ?", [event.country, event.city, event.postalCode, event.adresse, event.lat, event.lng, idEvent], callback);
     },
-    changeDates:function(idEvent, event, callback){
+    changeDates:(idEvent, event, callback) => {
         return db.query("UPDATE `gout`.`event` SET `dateStart` = ?, `dateEnd` = ? WHERE `id` = ?", [event.dateStart, event.dateEnd, idEvent], callback);
     },
-    changeName:function(idEvent, event, callback){
+    changeName:(idEvent, event, callback) => {
         return db.query("UPDATE `gout`.`event` SET `name` = ? WHERE `id` = ?", [event.name, idEvent], callback);
     },
-    globalFind:function(event, callback){
+    globalFind:(event, callback) => {
         return db.query("", [event], callback);
     },
 };

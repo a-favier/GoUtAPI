@@ -6,7 +6,7 @@ const event = require('../models/event');
 
 /** On déclare les fonctions liées aux categorie */
 const getEvent = (req, res) => {
-    event.getEvent(req.params.idEvent, function (err, rows) {
+    event.getEvent(req.params.idEvent, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -19,7 +19,7 @@ const getEvent = (req, res) => {
 };
 
 const getEventByUser = (req, res) => {
-    event.getEventByUser(req.params.pseudo, function (err, rows) {
+    event.getEventByUser(req.params.pseudo, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -31,7 +31,7 @@ const getEventByUser = (req, res) => {
 };
 
 const getFind = (req, res) => {
-    event.globalFind(req.params, function (err, rows) {
+    event.globalFind(req.params, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -43,7 +43,7 @@ const getFind = (req, res) => {
 };
 
 const postEvent = (req, res) => {
-    event.postEvent(req.params.pseudo, req.body, function (err, rows) {
+    event.postEvent(req.params.pseudo, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -55,7 +55,7 @@ const postEvent = (req, res) => {
 };
 
 const putActive = (req, res) => {
-    event.changeActive(req.params.idEvent, req.body, function (err, rows) {
+    event.changeActive(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -67,7 +67,7 @@ const putActive = (req, res) => {
 };
 
 const putBooking = (req, res) => {
-    event.changeBooking(req.params.idEvent, req.body, function (err, rows) {
+    event.changeBooking(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -79,7 +79,7 @@ const putBooking = (req, res) => {
 };
 
 const putDescription = (req, res) => {
-    event.changeDecription(req.params.idEvent, req.body, function (err, rows) {
+    event.changeDecription(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -91,7 +91,7 @@ const putDescription = (req, res) => {
 };
 
 const putLocal = (req, res) => {
-    event.changelocal(req.params.idEvent, req.body, function (err, rows) {
+    event.changelocal(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -103,7 +103,7 @@ const putLocal = (req, res) => {
 };
 
 const putDate = (req, res) => {
-    event.changeDates(req.params.idEvent, req.body, function (err, rows) {
+    event.changeDates(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -115,7 +115,7 @@ const putDate = (req, res) => {
 };
 
 const putName = (req, res) => {
-    event.changeName(req.params.idEvent, req.body, function (err, rows) {
+    event.changeName(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
