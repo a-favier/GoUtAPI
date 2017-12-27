@@ -38,7 +38,7 @@ const user={
         return db.query("UPDATE `gout`.`user` SET `tel` = ? WHERE `pseudo` = ?",[user.tel, pseudo],callback);
     },
     changePassword:function(pseudo, user, callback){
-        return db.query("UPDATE `gout`.`user` SET `password` = ? WHERE `pseudo` = ?",[pseudo, user.password],callback);
+        return db.query("UPDATE `gout`.`user` SET `password` = ? WHERE `pseudo` = ?",[user.password, pseudo],callback);
     },
 };
 
