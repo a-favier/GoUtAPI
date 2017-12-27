@@ -10,14 +10,13 @@ const User = require('../models/user');
 /** On créée le Middleware */
 const authMiddleware = (req, res, next) => {
 
-    const authToken = req.headers['x-auth-token'];
+    const authToken = req.headers['auth-token'];
 
     if (!authToken) {
         res.status(401).send({ success: false, message: 'Authentication required.' });
     } else {
 
         User.getUserByToken(authToken, (err, user) => {
-
             if (err) throw err;
 
             if (!user[0]) {
@@ -46,7 +45,6 @@ const authMiddleware = (req, res, next) => {
             }
 
         });
-
     }
 
 };

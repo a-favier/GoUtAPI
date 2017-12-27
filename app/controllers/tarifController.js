@@ -32,7 +32,7 @@ const postTarif = (req, res) => {
 };
 
 const deleteTarif = (req, res) => {
-    tarif.removeTarif(req.params.id, function (err, rows) {
+    tarif.removeTarif(req.params.idEvent, req.body, function (err, rows) {
         if(err)
         {
             res.status(400).json(err);

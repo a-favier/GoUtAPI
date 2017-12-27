@@ -6,14 +6,15 @@ const tarifController = require('../controllers/tarifController');
 
 /** On déclare notre router */
 const tarifRouter = express.Router();
+const myEventMiddleware = require('../middlewares/myEventMiddleware');
 
 /** On importe les middlewares */
 const authMiddleware = require('../middlewares/authMiddleware');
 
 /** On déclare les routes */
 tarifRouter.get('/event/:idEvent', tarifController.getTarifs);
-tarifRouter.post('/event/:idEvent', tarifController.postTarif);
-tarifRouter.delete('/:id', tarifController.deleteTarif);
+tarifRouter.post('/event/:idEvent', [authMiddleware, myEventMiddleware, tarifController.postTarif]);
+tarifRouter.delete('/event/:idEvent', [authMiddleware, myEventMiddleware, tarifController.deleteTarif]);
 
 
 

@@ -43,7 +43,7 @@ const getUserParticipationByEvent = (req, res) => {
 };
 
 const postParticipation = (req, res) => {
-    participation.addParticipation(req.params.idEvent, req.body, function (err, rows) {
+    participation.addParticipation(req.params.pseudo, req.body, function (err, rows) {
         if(err)
         {
             res.status(400).json(err);
@@ -55,7 +55,7 @@ const postParticipation = (req, res) => {
 };
 
 const deleteParticipation = (req, res) => {
-    participation.removeParticipation(req.params.id, function (err, rows) {
+    participation.removeParticipation(req.params.pseudo, req.body, function (err, rows) {
         if(err)
         {
             res.status(400).json(err);

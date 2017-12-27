@@ -43,7 +43,7 @@ const postCategorie = (req, res) => {
 };
 
 const deleteCategorie = (req, res) => {
-    categorie.deleteEventCategorie(req.params.id, function (err, rows) {
+    categorie.deleteEventCategorie(req.params.idEvent, req.body, function (err, rows) {
         if(err)
         {
             res.status(400).json(err);

@@ -10,8 +10,8 @@ const clientele={
     addEventClientele:function(idEvent, clientele,callback){
         return db.query("INSERT INTO `gout`.`clientele` (`id_event`,`id_data_clientele`) VALUES (?,?)",[idEvent, clientele.idClientele],callback);
     },
-    deleteEventClientele:function(id, callback){
-        return db.query("DELETE FROM `gout`.`clientele` WHERE id = ?", [id], callback);
+    deleteEventClientele:function(idEvent, clientele, callback){
+        return db.query("DELETE FROM `gout`.`clientele` WHERE id = ?", [idEvent, clientele.id], callback);
     }
 };
 

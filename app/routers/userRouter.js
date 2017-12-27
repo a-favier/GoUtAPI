@@ -9,17 +9,18 @@ const userRouter = express.Router();
 
 /** On importe les middlewares */
 const authMiddleware = require('../middlewares/authMiddleware');
+const myProfilMiddleware = require('../middlewares/myProfilMiddleware');
 
 /** On déclare les routes */
-userRouter.get('/me/:pseudo', userController.getMe);
-userRouter.get('/:pseudo', userController.getUser);
+userRouter.get('/me/:pseudo', [authMiddleware, myProfilMiddleware, userController.getMe]);
+userRouter.get('/user/:pseudo', userController.getUser);
 userRouter.get('/like/:pseudo', userController.getUsersLikePseudo);
 userRouter.post('/', userController.postUser);
-userRouter.put('/names/:pseudo', userController.putNames);
-userRouter.put('/mail/:pseudo', userController.putMail);
-userRouter.put('/born/:pseudo', userController.putBorn);
-userRouter.put('/tel/:pseudo', userController.putTel);
-userRouter.put('/password/:pseudo', userController.putPassword);
+userRouter.put('/names/:pseudo', [authMiddleware, myProfilMiddleware, userController.putNames]);
+userRouter.put('/mail/:pseudo', [authMiddleware, myProfilMiddleware, userController.putMail]);
+userRouter.put('/born/:pseudo', [authMiddleware, myProfilMiddleware, userController.putBorn]);
+userRouter.put('/tel/:pseudo', [authMiddleware, myProfilMiddleware, userController.putTel]);
+userRouter.put('/password/:pseudo', [authMiddleware, myProfilMiddleware, userController.putPassword]);
 
 /** On exporte le router */
 module.exports = userRouter;

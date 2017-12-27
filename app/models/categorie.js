@@ -10,8 +10,8 @@ const categorie={
     addEventCategorie:function(idEvent, categorie,callback){
         return db.query("INSERT INTO `gout`.`categorie` (`id_event`,`id_data_categrorie`) VALUES (?,?)",[idEvent, categorie.idCategorie],callback);
     },
-    deleteEventCategorie:function(id, callback){
-        return db.query("DELETE FROM `gout`.`categorie` WHERE id = ?", [id], callback);
+    deleteEventCategorie:function(idEvent, categorie, callback){
+        return db.query("DELETE FROM `gout`.`categorie` WHERE id_event = ? AND id = ?", [idEvent, categorie.id], callback);
     }
 };
 

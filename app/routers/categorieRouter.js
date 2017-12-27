@@ -9,12 +9,13 @@ const categorieRouter = express.Router();
 
 /** On importe les middlewares */
 const authMiddleware = require('../middlewares/authMiddleware');
+const myEventMiddleware = require('../middlewares/myEventMiddleware');
 
 /** On déclare les routes */
 categorieRouter.get('/', categorieController.getCategories);
 categorieRouter.get('/event/:idEvent', categorieController.getEventCategorie);
-categorieRouter.post('/event/:idEvent', categorieController.postCategorie);
-categorieRouter.delete('/:id', categorieController.deleteCategorie);
+categorieRouter.post('/event/:idEvent', [authMiddleware, myEventMiddleware, categorieController.postCategorie]);
+categorieRouter.delete('/event/:idEvent', [authMiddleware, myEventMiddleware, categorieController.deleteCategorie]);
 
 /** On exporte le router */
 module.exports = categorieRouter;

@@ -43,7 +43,7 @@ const postClientele = (req, res) => {
 };
 
 const deleteClientele = (req, res) => {
-    clientele.deleteEventClientele(req.params.id, function (err, rows) {
+    clientele.deleteEventClientele(req.params.idEvent, req.body, function (err, rows) {
         if(err)
         {
             res.status(400).json(err);

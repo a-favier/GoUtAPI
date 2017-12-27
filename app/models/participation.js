@@ -10,11 +10,11 @@ const participation={
     getUserParticipationByEvent:function(idEvent, pseudo, callback){
         return db.query("SELECT `participation`.`id` FROM `gout`.`participation` WHERE `participation`.`id_event` = ? AND `participation`.`pseudo_user` = ?",[idEvent, pseudo],callback);
     },
-    addParticipation:function(idEvent, user,callback){
-        return db.query("INSERT INTO `gout`.`participation` (`id_event`,`pseudo_user`) VALUES (?,?)",[idEvent, user.pseudo],callback);
+    addParticipation:function(pseudo, event,callback){
+        return db.query("INSERT INTO `gout`.`participation` (`id_event`,`pseudo_user`) VALUES (?,?)",[event.idEvent, pseudo],callback);
     },
-    removeParticipation:function(id, callback){
-        return db.query("DELETE FROM `gout`.`participation` WHERE id = ?", [id], callback);
+    removeParticipation:function(pseudo, participation, callback){
+        return db.query("DELETE FROM `gout`.`participation` WHERE id = ?", [pseudo, participation.id], callback);
     }
 };
 
