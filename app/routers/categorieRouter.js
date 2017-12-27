@@ -15,5 +15,6 @@ categorieRouter.get('/', categorieController.getCategories);
 categorieRouter.get('/event/:idEvent', categorieController.getEventCategorie);
 categorieRouter.post('/event/:idEvent', categorieController.postCategorie);
 categorieRouter.delete('/:id', categorieController.deleteCategorie);
+
 /** On exporte le router */
 module.exports = categorieRouter;
