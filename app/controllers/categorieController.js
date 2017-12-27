@@ -18,20 +18,8 @@ const getCategories = (req, res) => {
     })
 };
 
-const getCategorie = (req, res) => {
-    categorie.getCategorieById(req.params.id, function (err, rows) {
-        if(err)
-        {
-            res.status(400).json(err);
-        }
-        else{
-            res.status(200).json(rows);
-        }
-    })
-};
-
 const getEventCategorie = (req, res) => {
-    categorie.getCategorieByEvent(req.params.id, function (err, rows) {
+    categorie.getCategorieByEvent(req.params.idEvent, function (err, rows) {
         if(err)
         {
             res.status(400).json(err);
@@ -43,7 +31,7 @@ const getEventCategorie = (req, res) => {
 };
 
 const postCategorie = (req, res) => {
-    categorie.addEventCategorie(req.body, function (err, rows) {
+    categorie.addEventCategorie(req.params.idEvent, req.body, function (err, rows) {
         if(err)
         {
             res.status(400).json(err);
@@ -70,7 +58,6 @@ const deleteCategorie = (req, res) => {
 /** On exporte le controller */
 module.exports = {
     getCategories: getCategories,
-    getCategorie: getCategorie,
     getEventCategorie: getEventCategorie,
     postCategorie: postCategorie,
     deleteCategorie: deleteCategorie,

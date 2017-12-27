@@ -12,10 +12,8 @@ const authMiddleware = require('../middlewares/authMiddleware');
 
 /** On déclare les routes */
 categorieRouter.get('/', categorieController.getCategories);
-categorieRouter.get('/:id', categorieController.getCategorie);
-categorieRouter.get('/event/:id', categorieController.getEventCategorie);
-categorieRouter.post('/event/', categorieController.postCategorie);
+categorieRouter.get('/event/:idEvent', categorieController.getEventCategorie);
+categorieRouter.post('/event/:idEvent', categorieController.postCategorie);
 categorieRouter.delete('/:id', categorieController.deleteCategorie);
-
 /** On exporte le router */
 module.exports = categorieRouter;
