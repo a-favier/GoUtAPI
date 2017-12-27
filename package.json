@@ -1,6 +1,6 @@
 {
   "name": "GoUtAPI",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "API pour l'application mobile GoUt",
   "main": "server.js",
   "scripts": {
