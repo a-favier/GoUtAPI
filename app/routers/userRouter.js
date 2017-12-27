@@ -11,10 +11,15 @@ const userRouter = express.Router();
 const authMiddleware = require('../middlewares/authMiddleware');
 
 /** On déclare les routes */
-userRouter.get('/', userController.getUsers);
+userRouter.get('/me/:pseudo', userController.getMe);
 userRouter.get('/:pseudo', userController.getUser);
+userRouter.get('/like/:pseudo', userController.getUsersLikePseudo);
 userRouter.post('/', userController.postUser);
-userRouter.put('/:pseudo', [authMiddleware, userController.putUser]);
+userRouter.put('/names/:pseudo', userController.putNames);
+userRouter.put('/mail/:pseudo', userController.putMail);
+userRouter.put('/born/:pseudo', userController.putBorn);
+userRouter.put('/tel/:pseudo', userController.putTel);
+userRouter.put('/password/:pseudo', userController.putPassword);
 
 /** On exporte le router */
 module.exports = userRouter;
