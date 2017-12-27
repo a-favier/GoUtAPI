@@ -10,14 +10,15 @@ const User = require('../models/user');
 /** On créée le Middleware */
 const authMiddleware = (req, res, next) => {
 
-    const authToken = req.headers['x-auth-token'];
+    /** On vérifie que l'on a bien le token **/
+    const authToken = req.headers['auth-token'];
 
     if (!authToken) {
         res.status(401).send({ success: false, message: 'Authentication required.' });
     } else {
 
+        /** On vérifie la validité du token **/
         User.getUserByToken(authToken, (err, user) => {
-
             if (err) throw err;
 
             if (!user[0]) {
@@ -35,9 +36,11 @@ const authMiddleware = (req, res, next) => {
                         } else {
                             let validUntil = new Date((new Date()).setHours((new Date()).getHours() + 1));
 
+                            /** On met a jour la validité du token **/
                             User.updateTokenUser(user[0].pseudo, authToken, validUntil, (err, user) => {
                                 if (err) throw err;
 
+                                /** Tout est OK, on passe a la suite **/
                                 next();
                             });
                         }
@@ -46,7 +49,6 @@ const authMiddleware = (req, res, next) => {
             }
 
         });
-
     }
 
 };

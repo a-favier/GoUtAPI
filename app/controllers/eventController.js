@@ -1,12 +1,12 @@
-/** On importe les librairies */
+/** On importe les librairies **/
 const bcrypt = require('bcrypt-nodejs');
 
-/** On importe les modèles */
+/** On importe les modèles **/
 const event = require('../models/event');
 
-/** On déclare les fonctions liées aux categorie */
+/** On déclare les fonctions liées aux event **/
 const getEvent = (req, res) => {
-    event.getEvent(req.params.idEvent, function (err, rows) {
+    event.getEvent(req.params.idEvent, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -15,11 +15,11 @@ const getEvent = (req, res) => {
         {
             res.status(200).json(rows);
         }
-    })
+    });
 };
 
 const getEventByUser = (req, res) => {
-    event.getEventByUser(req.params.pseudo, function (err, rows) {
+    event.getEventByUser(req.params.pseudo, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -27,11 +27,23 @@ const getEventByUser = (req, res) => {
         else{
             res.status(200).json(rows);
         }
-    })
+    });
+};
+
+const getFind = (req, res) => {
+    event.globalFind(req.params, (err, rows) => {
+        if(err)
+        {
+            res.status(400).json(err);
+        }
+        else{
+            res.status(526).json(rows);
+        }
+    });
 };
 
 const postEvent = (req, res) => {
-    event.postEvent(req.body, function (err, rows) {
+    event.postEvent(req.params.pseudo, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -39,11 +51,11 @@ const postEvent = (req, res) => {
         else{
             res.status(201).json(rows);
         }
-    })
+    });
 };
 
 const putActive = (req, res) => {
-    event.changeActive(req.params.idEvent, req.body, function (err, rows) {
+    event.changeActive(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -51,11 +63,11 @@ const putActive = (req, res) => {
         else{
             res.status(201).json(rows);
         }
-    })
+    });
 };
 
 const putBooking = (req, res) => {
-    event.changeBooking(req.params.idEvent, req.body, function (err, rows) {
+    event.changeBooking(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -63,11 +75,11 @@ const putBooking = (req, res) => {
         else{
             res.status(201).json(rows);
         }
-    })
+    });
 };
 
 const putDescription = (req, res) => {
-    event.changeDecription(req.params.idEvent, req.body, function (err, rows) {
+    event.changeDecription(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -75,11 +87,11 @@ const putDescription = (req, res) => {
         else{
             res.status(201).json(rows);
         }
-    })
+    });
 };
 
 const putLocal = (req, res) => {
-    event.changelocal(req.params.idEvent, req.body, function (err, rows) {
+    event.changelocal(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -87,11 +99,11 @@ const putLocal = (req, res) => {
         else{
             res.status(201).json(rows);
         }
-    })
+    });
 };
 
 const putDate = (req, res) => {
-    event.changeDates(req.params.idEvent, req.body, function (err, rows) {
+    event.changeDates(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -99,11 +111,11 @@ const putDate = (req, res) => {
         else{
             res.status(201).json(rows);
         }
-    })
+    });
 };
 
 const putName = (req, res) => {
-    event.changeName(req.params.idEvent, req.body, function (err, rows) {
+    event.changeName(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -111,19 +123,21 @@ const putName = (req, res) => {
         else{
             res.status(201).json(rows);
         }
-    })
+    });
 };
 
 
-/** On exporte le controller */
+/** On exporte le controller **/
 module.exports = {
     getEvent: getEvent,
     getEventByUser: getEventByUser,
+    getFind: getFind,
     postEvent: postEvent,
     putActive: putActive,
     putBooking: putBooking,
     putDescription: putDescription,
     putLocal: putLocal,
     putDate: putDate,
-    putName: putName
+    putName: putName,
+
 };

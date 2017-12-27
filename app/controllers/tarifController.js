@@ -1,12 +1,12 @@
-/** On importe les librairies */
+/** On importe les librairies **/
 const bcrypt = require('bcrypt-nodejs');
 
-/** On importe les modèles */
+/** On importe les modèles **/
 const tarif = require('../models/tarif');
 
-/** On déclare les fonctions liées aux tarifs */
+/** On déclare les fonctions liées aux tarifs **/
 const getTarifs = (req, res) => {
-    tarif.getTarifsByEvent(req.params.idEvent, function (err, rows) {
+    tarif.getTarifsByEvent(req.params.idEvent, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -19,7 +19,7 @@ const getTarifs = (req, res) => {
 };
 
 const postTarif = (req, res) => {
-    tarif.addTarifByEvent(req.params.idEvent, req.body, function (err, rows) {
+    tarif.addTarifByEvent(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -32,7 +32,7 @@ const postTarif = (req, res) => {
 };
 
 const deleteTarif = (req, res) => {
-    tarif.removeTarif(req.params.id, function (err, rows) {
+    tarif.removeTarif(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);
@@ -46,7 +46,7 @@ const deleteTarif = (req, res) => {
 
 
 
-/** On exporte le controller */
+/** On exporte le controller **/
 module.exports = {
     getTarifs: getTarifs,
     postTarif: postTarif,
