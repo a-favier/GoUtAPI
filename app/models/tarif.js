@@ -1,5 +1,7 @@
+/** Import de la connexion SQL**/
 const db = require('../config/database');
 
+/** Déclaration des fonctions **/
 const tarif={
     getTarifsByEvent:(idEvent, callback) => {
         return db.query("SELECT `tarif`.`id`, `tarif`.`name`, `tarif`.`price` FROM `gout`.`tarif` WHERE `tarif`.`id_event` = ?",[idEvent],callback);
@@ -13,5 +15,5 @@ const tarif={
 };
 
 
-/** On exporte le modèle */
+/** On exporte le modèle **/
 module.exports = tarif;

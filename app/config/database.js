@@ -1,4 +1,4 @@
-/** On importe les librairies */
+/** On importe les librairies **/
 const mysql = require('mysql');
 const ini = require('ini');
 const fs = require('fs');
@@ -15,5 +15,5 @@ const databaseConfig = mysql.createConnection({
 });
 
 
-/** On exporte la configuration */
+/** On exporte la configuration **/
 module.exports = databaseConfig;

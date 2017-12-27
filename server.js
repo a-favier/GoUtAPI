@@ -1,13 +1,13 @@
-/** On importe les librairies */
+/** On importe les librairies **/
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const fs = require('fs');
 
-/** On importe fichiers de configuration */
+/** On importe la conf de la BDD **/
 const databaseConfig = require('./app/config/database');
 
-/** On instancie l'application */
+/** On instancie l'application **/
 const app = express();
 
 /** On crée et instancie le looger **/
@@ -18,7 +18,7 @@ app.use(morgan('combined', {stream: logFile}));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-/** On importe les routers */
+/** On importe les routers **/
 const authRouter = require('./app/routers/authRouter');
 
 const userRouter = require('./app/routers/userRouter');
@@ -28,12 +28,12 @@ const eventRouter = require('./app/routers/eventRouter');
 const participationRouter = require('./app/routers/participationRouter');
 const tarifRouter = require('./app/routers/tarifRouter');
 
-/** On importe les middlewares */
+/** On importe les middlewares **/
 
-/** On créé le router API */
+/** On créé le router API **/
 const apiRouter = express.Router();
 
-/** On implémente le router API */
+/** On implémente le router API **/
 apiRouter.use('/auth', authRouter);
 
 apiRouter.use('/user', userRouter);
@@ -43,7 +43,6 @@ apiRouter.use('/event', eventRouter);
 apiRouter.use('/participation', participationRouter);
 apiRouter.use('/tarif', tarifRouter);
 
-
 app.use('/api', apiRouter);
 
 /** Connexion à la BDD **/
@@ -52,7 +51,7 @@ databaseConfig.connect(function(err) {
     console.log("Connecté a la BDD 'GoUt'");
 });
 
-/** On démarre l'application */
+/** On démarre l'application **/
 app.listen(3000, () => {
     console.log('Le serveur écoute sur le port 3000');
 });

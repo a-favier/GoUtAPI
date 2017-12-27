@@ -1,5 +1,7 @@
+/** Import de la connexion SQL**/
 const db = require('../config/database');
 
+/** Déclaration des fonctions **/
 const participation={
     getEventParticipation:(idEvent, callback) => {
         return db.query("SELECT `participation`.`id`, `user`.`pseudo` FROM `gout`.`participation` LEFT JOIN `user` ON `participation`.`pseudo_user` = `user`.`pseudo` WHERE `participation`.`id_event` = ?",[idEvent],callback);
@@ -19,5 +21,5 @@ const participation={
 };
 
 
-/** On exporte le modèle */
+/** On exporte le modèle **/
 module.exports = participation;

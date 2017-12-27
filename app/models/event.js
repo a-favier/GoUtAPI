@@ -1,5 +1,7 @@
+/** Import de la connexion SQL**/
 const db = require('../config/database');
 
+/** Déclaration des fonctions **/
 const event={
     getEvent:(idEvent, callback) => {
         return db.query("SELECT `event`.`id`, `event`.`pseudo_organizer`, `event`.`name`,`event`.`booking`, `event`.`dateStart`,`event`.`dateEnd`, `event`.`country`, `event`.`city`, `event`.`postalCode`, `event`.`adresse`, `event`.`lat`, `event`.`lng`, `event`.`description`, `event`.`active` FROM `gout`.`event` WHERE id = ?",[idEvent],callback);
@@ -34,5 +36,5 @@ const event={
 };
 
 
-/** On exporte le modèle */
+/** On exporte le modèle **/
 module.exports = event;

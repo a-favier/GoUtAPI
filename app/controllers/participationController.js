@@ -1,10 +1,10 @@
-/** On importe les librairies */
+/** On importe les librairies **/
 const bcrypt = require('bcrypt-nodejs');
 
-/** On importe les modèles */
+/** On importe les modèles **/
 const participation = require('../models/participation');
 
-/** On déclare les fonctions liées aux categorie */
+/** On déclare les fonctions liées aux participations **/
 const getEventParticipation = (req, res) => {
     participation.getEventParticipation(req.params.idEvent, (err, rows) => {
         if(err)
@@ -15,7 +15,7 @@ const getEventParticipation = (req, res) => {
         {
             res.status(200).json(rows);
         }
-    })
+    });
 };
 
 const getUserParticipation = (req, res) => {
@@ -27,7 +27,7 @@ const getUserParticipation = (req, res) => {
         else{
             res.status(200).json(rows);
         }
-    })
+    });
 };
 
 const getUserParticipationByEvent = (req, res) => {
@@ -39,7 +39,7 @@ const getUserParticipationByEvent = (req, res) => {
         else{
             res.status(200).json(rows);
         }
-    })
+    });
 };
 
 const postParticipation = (req, res) => {
@@ -51,7 +51,7 @@ const postParticipation = (req, res) => {
         else{
             res.status(200).json(rows);
         }
-    })
+    });
 };
 
 const deleteParticipation = (req, res) => {
@@ -63,11 +63,11 @@ const deleteParticipation = (req, res) => {
         else{
             res.status(200).json(rows);
         }
-    })
+    });
 };
 
 
-/** On exporte le controller */
+/** On exporte le controller **/
 module.exports = {
     getEventParticipation: getEventParticipation,
     getUserParticipation: getUserParticipation,

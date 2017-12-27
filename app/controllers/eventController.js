@@ -1,10 +1,10 @@
-/** On importe les librairies */
+/** On importe les librairies **/
 const bcrypt = require('bcrypt-nodejs');
 
-/** On importe les modèles */
+/** On importe les modèles **/
 const event = require('../models/event');
 
-/** On déclare les fonctions liées aux categorie */
+/** On déclare les fonctions liées aux event **/
 const getEvent = (req, res) => {
     event.getEvent(req.params.idEvent, (err, rows) => {
         if(err)
@@ -15,7 +15,7 @@ const getEvent = (req, res) => {
         {
             res.status(200).json(rows);
         }
-    })
+    });
 };
 
 const getEventByUser = (req, res) => {
@@ -27,7 +27,7 @@ const getEventByUser = (req, res) => {
         else{
             res.status(200).json(rows);
         }
-    })
+    });
 };
 
 const getFind = (req, res) => {
@@ -39,7 +39,7 @@ const getFind = (req, res) => {
         else{
             res.status(526).json(rows);
         }
-    })
+    });
 };
 
 const postEvent = (req, res) => {
@@ -51,7 +51,7 @@ const postEvent = (req, res) => {
         else{
             res.status(201).json(rows);
         }
-    })
+    });
 };
 
 const putActive = (req, res) => {
@@ -63,7 +63,7 @@ const putActive = (req, res) => {
         else{
             res.status(201).json(rows);
         }
-    })
+    });
 };
 
 const putBooking = (req, res) => {
@@ -75,7 +75,7 @@ const putBooking = (req, res) => {
         else{
             res.status(201).json(rows);
         }
-    })
+    });
 };
 
 const putDescription = (req, res) => {
@@ -87,7 +87,7 @@ const putDescription = (req, res) => {
         else{
             res.status(201).json(rows);
         }
-    })
+    });
 };
 
 const putLocal = (req, res) => {
@@ -99,7 +99,7 @@ const putLocal = (req, res) => {
         else{
             res.status(201).json(rows);
         }
-    })
+    });
 };
 
 const putDate = (req, res) => {
@@ -111,7 +111,7 @@ const putDate = (req, res) => {
         else{
             res.status(201).json(rows);
         }
-    })
+    });
 };
 
 const putName = (req, res) => {
@@ -123,11 +123,11 @@ const putName = (req, res) => {
         else{
             res.status(201).json(rows);
         }
-    })
+    });
 };
 
 
-/** On exporte le controller */
+/** On exporte le controller **/
 module.exports = {
     getEvent: getEvent,
     getEventByUser: getEventByUser,

@@ -1,10 +1,10 @@
-/** On importe les librairies */
+/** On importe les librairies **/
 const bcrypt = require('bcrypt-nodejs');
 
-/** On importe les modèles */
+/** On importe les modèles **/
 const clientele = require('../models/clientele');
 
-/** On déclare les fonctions liées aux categorie */
+/** On déclare les fonctions liées a la clientele **/
 const getClientele = (req, res) => {
     clientele.getAllClientele((err, rows) => {
         if(err)
@@ -15,7 +15,7 @@ const getClientele = (req, res) => {
         {
             res.status(200).json(rows);
         }
-    })
+    });
 };
 
 const getEventClientele = (req, res) => {
@@ -27,7 +27,7 @@ const getEventClientele = (req, res) => {
         else{
             res.status(200).json(rows);
         }
-    })
+    });
 };
 
 const postClientele = (req, res) => {
@@ -39,7 +39,7 @@ const postClientele = (req, res) => {
         else{
             res.status(200).json(rows);
         }
-    })
+    });
 };
 
 const deleteClientele = (req, res) => {
@@ -51,11 +51,11 @@ const deleteClientele = (req, res) => {
         else{
             res.status(200).json(rows);
         }
-    })
+    });
 };
 
 
-/** On exporte le controller */
+/** On exporte le controller **/
 module.exports = {
     getClientele: getClientele,
     getEventClientele: getEventClientele,

@@ -1,5 +1,7 @@
+/** Import de la connexion SQL**/
 const db = require('../config/database');
 
+/** Déclaration des fonctions **/
 const clientele={
     getAllClientele:(callback) => {
         return db.query("SELECT `data_clientele`.`id`, `data_clientele`.`name` FROM `gout`.`data_clientele`",callback);
@@ -16,5 +18,5 @@ const clientele={
 };
 
 
-/** On exporte le modèle */
+/** On exporte le modèle **/
 module.exports = clientele;

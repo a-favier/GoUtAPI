@@ -1,23 +1,23 @@
-/** On importe les librairies */
+/** On importe les librairies **/
 const bcrypt = require('bcrypt-nodejs');
 const jwt = require('jsonwebtoken');
 
-/** On importe les fichiers de configuration */
+/** On importe les fichiers de configuration **/
 const jwtConfig = require('../config/jwt');
 
-/** On importe les modèles */
-const User = require('../models/user');
+/** On importe les modèles **/
+const userModel = require('../models/user');
 
-/** On déclare les fonctions liées aux animaux */
 const login = (req, res) => {
-
     const pseudo = req.body.pseudo;
     const password = req.body.password;
 
+    /** On test si on à toutes les info nécessaire à la connexion **/
     if (!pseudo || !password || pseudo === '' || password === '') {
         res.status(400).send({ success: false, message: 'Both of Username and Password fields are required.' });
     } else {
-        User.getPasswordByPseudo(pseudo, (err, user) => {
+        /** On test le couple password/pseudo **/
+        userModel.getPasswordByPseudo(pseudo, (err, user) => {
             if (err) throw err;
 
             if (!user[0]) {
@@ -38,10 +38,12 @@ const login = (req, res) => {
 
                         let validUntil = new Date((new Date()).setHours((new Date()).getHours() + 1));
 
-                        User.updateTokenUser(pseudo,authToken, validUntil, (err, user) => {
+                        /** On met a jour le token et sa durée de validé en BDD **/
+                        userModel.updateTokenUser(pseudo,authToken, validUntil, (err, user) => {
 
                             if (err) throw err;
 
+                            /** On retourne le token d'identification **/
                             res.status(200).send({ success: true, authToken: authToken });
 
                         })

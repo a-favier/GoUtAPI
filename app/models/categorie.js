@@ -1,5 +1,7 @@
+/** Import de la connexion SQL**/
 const db = require('../config/database');
 
+/** Déclaration des fonctions **/
 const categorie={
     getAllCategorie:(callback) => {
         return db.query("SELECT `data_categorie`.`id`, `data_categorie`.`name`, `data_categorie`.`description` FROM `gout`.`data_categorie`",callback);
@@ -16,5 +18,5 @@ const categorie={
 };
 
 
-/** On exporte le modèle */
+/** On exporte le modèle **/
 module.exports = categorie;

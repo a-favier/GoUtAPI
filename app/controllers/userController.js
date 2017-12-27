@@ -1,10 +1,10 @@
-/** On importe les librairies */
+/** On importe les librairies **/
 const bcrypt = require('bcrypt-nodejs');
 
-/** On importe les modèles */
+/** On importe les modèles **/
 const user = require('../models/user');
 
-/** On déclare les fonctions liées aux user */
+/** On déclare les fonctions liées aux users **/
 const getMe = (req, res) => {
     user.getMe(req.params.pseudo, (err, rows) => {
         if(err)
@@ -15,7 +15,7 @@ const getMe = (req, res) => {
         {
             res.status(200).json(rows);
         }
-    })
+    });
 };
 
 const getUser = (req, res) => {
@@ -27,7 +27,7 @@ const getUser = (req, res) => {
         else{
             res.status(200).json(rows);
         }
-    })
+    });
 };
 
 const getUsersLikePseudo = (req, res) => {
@@ -53,7 +53,7 @@ const postUser = (req, res) => {
         else{
             res.status(201).json(rows);
         }
-    })
+    });
 };
 
 const putNames = (req, res) => {
@@ -65,7 +65,7 @@ const putNames = (req, res) => {
         else{
             res.status(201).json(rows);
         }
-    })
+    });
 };
 
 const putMail = (req, res) => {
@@ -77,7 +77,7 @@ const putMail = (req, res) => {
         else{
             res.status(201).json(rows);
         }
-    })
+    });
 };
 
 const putBorn = (req, res) => {
@@ -101,7 +101,7 @@ const putTel = (req, res) => {
         else{
             res.status(201).json(rows);
         }
-    })
+    });
 };
 
 const putPassword = (req, res) => {
@@ -115,10 +115,10 @@ const putPassword = (req, res) => {
         else{
             res.status(201).json(rows);
         }
-    })
+    });
 };
 
-/** On exporte le controller */
+/** On exporte le controller **/
 module.exports = {
     getMe: getMe,
     getUser: getUser,

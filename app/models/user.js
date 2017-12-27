@@ -1,5 +1,7 @@
+/** Import de la connexion SQL**/
 const db = require('../config/database');
 
+/** Déclaration des fonctions **/
 const user={
     /** Routes pour l'identification **/
     getPasswordByPseudo:(pseudo,callback) => {
@@ -42,6 +44,5 @@ const user={
     },
 };
 
-
-/** On exporte le modèle */
+/** On exporte le modèle **/
 module.exports = user;
