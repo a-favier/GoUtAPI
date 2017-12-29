@@ -31,7 +31,32 @@ const getEventByUser = (req, res) => {
 };
 
 const getFind = (req, res) => {
-    event.globalFind(req.params, (err, rows) => {
+    let ownRequirements = {
+        'pseudo_organizer' : null,
+        'name' : null,
+        'dateStart' : null,
+        'dateEnd' : null,
+        'country' : null,
+        'city' : null,
+        'postalCode' : null,
+        'booking' : null,
+    };
+
+    let extRequirements = {
+        'clientele' : null,
+        'price' : null,
+        'categorie' : null,
+    };
+
+    for(let value in ownRequirements){
+        req.query[value] !== undefined ? ownRequirements[value] = req.query[value] : delete ownRequirements[value];
+    }
+
+    for(let value in extRequirements){
+        req.query[value] !== undefined ? extRequirements[value] = req.query[value] : delete extRequirements[value];
+    }
+
+    event.globalFind(ownRequirements,extRequirements, (err, rows) => {
         if(err)
         {
             res.status(400).json(err);

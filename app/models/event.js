@@ -30,8 +30,8 @@ const event={
     changeName:(idEvent, event, callback) => {
         return db.query("UPDATE `gout`.`event` SET `name` = ? WHERE `id` = ?", [event.name, idEvent], callback);
     },
-    globalFind:(event, callback) => {
-        return db.query("", [event], callback);
+    globalFind:(ownRequirements, extRequirements, callback) => {
+        return db.query("", [argsQuery], callback);
     },
 };
 
