@@ -18,6 +18,12 @@ app.use(morgan('combined', {stream: logFile}));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+/** Création d'un petit middleware pour la gestion d'erreurs **/
+app.use(function(err, req, res, next) {
+    console.error("Error: " + err + ", Stacktrace: " + err.stack);
+    return res.send(500, "Something broke! Error: " + err + ", Stacktrace: " + err.stack);
+});
+
 /** On importe les routers **/
 const authRouter = require('./app/routers/authRouter');
 
@@ -27,8 +33,6 @@ const clienteleRouter = require('./app/routers/clienteleRouter');
 const eventRouter = require('./app/routers/eventRouter');
 const participationRouter = require('./app/routers/participationRouter');
 const tarifRouter = require('./app/routers/tarifRouter');
-
-/** On importe les middlewares **/
 
 /** On créé le router API **/
 const apiRouter = express.Router();
@@ -48,7 +52,7 @@ app.use('/api', apiRouter);
 /** Connexion à la BDD **/
 databaseConfig.connect(function(err) {
     if (err) throw err;
-    console.log("Connecté a la BDD 'GoUt'");
+    console.log("Connecté a la BDD");
 });
 
 /** On démarre l'application **/
