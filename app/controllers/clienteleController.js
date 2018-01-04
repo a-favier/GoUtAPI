@@ -37,7 +37,7 @@ const postClientele = (req, res) => {
             res.status(400).json(err);
         }
         else{
-            res.status(200).json(rows);
+            res.status(200).json({sucess : true, message : "The clientele " + req.body.idClientele + " for event " + req.params.idEvent + " has been added"});
         }
     });
 };
@@ -49,7 +49,11 @@ const deleteClientele = (req, res) => {
             res.status(400).json(err);
         }
         else{
-            res.status(200).json(rows);
+            if(rows.affectedRows === 0){
+                res.status(400).json({sucess : false, message : "No clientele delete"})
+            }else{
+                res.status(200).json({sucess : true, message : "Clientele has been delete"});
+            }
         }
     });
 };

@@ -51,7 +51,7 @@ const postUser = (req, res) => {
             res.status(400).json(err);
         }
         else{
-            res.status(201).json(rows);
+            res.status(201).json({sucess : true , message : "User : " + req.body.pseudo + " has been create"});
         }
     });
 };
@@ -63,7 +63,11 @@ const putNames = (req, res) => {
             res.status(400).json(err);
         }
         else{
-            res.status(201).json(rows);
+            if(rows.affectedRows === 0){
+                res.status(400).json({sucess : false, message : "No name change"})
+            }else{
+                res.status(201).json({sucess : true, message : "Name has been change"});
+            }
         }
     });
 };
@@ -75,7 +79,11 @@ const putMail = (req, res) => {
             res.status(400).json(err);
         }
         else{
-            res.status(201).json(rows);
+            if(rows.affectedRows === 0){
+                res.status(400).json({sucess : false, message : "No mail change"})
+            }else{
+                res.status(201).json({sucess : true, message : "mail has been change"});
+            }
         }
     });
 };
@@ -87,7 +95,11 @@ const putBorn = (req, res) => {
             res.status(400).json(err);
         }
         else{
-            res.status(201).json(rows);
+            if(rows.affectedRows === 0){
+                res.status(400).json({sucess : false, message : "No born date change"})
+            }else{
+                res.status(201).json({sucess : true, message : "born date has been change"});
+            }
         }
     })
 };
@@ -99,7 +111,11 @@ const putTel = (req, res) => {
             res.status(400).json(err);
         }
         else{
-            res.status(201).json(rows);
+            if(rows.affectedRows === 0){
+                res.status(400).json({sucess : false, message : "No tel number change"})
+            }else{
+                res.status(201).json({sucess : true, message : "tel number has been change"});
+            }
         }
     });
 };
@@ -113,7 +129,11 @@ const putPassword = (req, res) => {
             res.status(400).json(err);
         }
         else{
-            res.status(201).json(rows);
+            if(rows.affectedRows === 0){
+                res.status(400).json({sucess : false, message : "No password change"})
+            }else{
+                res.status(201).json({sucess : true, message : "password has been change"});
+            }
         }
     });
 };

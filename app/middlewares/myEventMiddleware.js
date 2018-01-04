@@ -17,10 +17,15 @@ const authMiddleware = (req, res, next) => {
         if (err) throw err;
 
         eventModel.getEvent(idEvent, (err, event) => {
+            if (err) throw err;
+
             /** On vérifie que l'utilisateur actuel est bien le propriétaire de la ressource **/
-            if(event[0].pseudo_organizer !== user[0].pseudo){
+            if(event[0] === undefined){
+                res.status(401).send({success: false, message : 'This event not exist'});
+            }
+            else if(event[0].pseudo_organizer !== user[0].pseudo){
                 res.status(401).send({ success: false, message: 'You are not owner of this resource'});
-            }else{
+            }else {
                 /** Tout est OK, on passe a la suite **/
                 next();
             }
