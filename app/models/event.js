@@ -41,10 +41,10 @@ const event={
             reqArgs += "event.name LIKE '%" + ownRequirements['name'] + "%' AND ";
         }
         if(ownRequirements['dateStart']){
-            reqArgs += "event.dateStart > '" + ownRequirements['dateStart'] + "' AND ";
+            reqArgs += "event.dateStart >= '" + ownRequirements['dateStart'] + "' AND ";
         }
         if(ownRequirements['dateEnd']){
-            reqArgs += "event.dateEnd < '" + ownRequirements['dateEnd'] + "' AND ";
+            reqArgs += "event.dateEnd <= '" + ownRequirements['dateEnd'] + "' AND ";
         }
         if(ownRequirements['country']){
             reqArgs += "event.country = '" + ownRequirements['country'] + "' AND ";
