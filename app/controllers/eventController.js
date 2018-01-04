@@ -66,29 +66,22 @@ const getFind = (req, res) => {
         'city' : null,
         'postalCode' : null,
         'booking' : null,
-    };
-
-    let extRequirements = {
-        'clientele' : null,
+        'idClientele' : null,
         'price' : null,
-        'categorie' : null,
+        'idCategorie' : null,
     };
 
     for(let value in ownRequirements){
         req.query[value] !== undefined ? ownRequirements[value] = req.query[value] : delete ownRequirements[value];
     }
 
-    for(let value in extRequirements){
-        req.query[value] !== undefined ? extRequirements[value] = req.query[value] : delete extRequirements[value];
-    }
-
-    event.globalFind(ownRequirements,extRequirements, (err, rows) => {
+    event.globalFind(ownRequirements, (err, rows) => {
         if(err)
         {
-            res.status(400).json(err);
+           res.status(400).json(err);
         }
         else{
-            res.status(526).json(rows);
+            res.status(200).json(rows);
         }
     });
 };

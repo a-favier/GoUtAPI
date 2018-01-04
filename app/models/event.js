@@ -30,8 +30,50 @@ const event={
     changeName:(idEvent, event, callback) => {
         return db.query("UPDATE `gout`.`event` SET `name` = ? WHERE `id` = ?", [event.name, idEvent], callback);
     },
-    globalFind:(ownRequirements, extRequirements, callback) => {
-        return db.query("", [argsQuery], callback);
+    globalFind:(ownRequirements, callback) => {
+        reqBase = 'SELECT event.id, event.name FROM gout.event LEFT JOIN clientele ON event.id = clientele.id_event LEFT JOIN tarif ON event.id = tarif.price LEFT JOIN categorie ON event.id = categorie.id_event ';
+        reqArgs = 'WHERE ';
+
+        if(ownRequirements['pseudo_organizer']){
+            reqArgs += "event.pseudo_organizer LIKE '%" + ownRequirements['pseudo_organizer'] + "%' AND ";
+        }
+        if(ownRequirements['name']){
+            reqArgs += "event.name LIKE '%" + ownRequirements['name'] + "%' AND ";
+        }
+        if(ownRequirements['dateStart']){
+            reqArgs += "event.dateStart > '" + ownRequirements['dateStart'] + "' AND ";
+        }
+        if(ownRequirements['dateEnd']){
+            reqArgs += "event.dateEnd < '" + ownRequirements['dateEnd'] + "' AND ";
+        }
+        if(ownRequirements['country']){
+            reqArgs += "event.country = '" + ownRequirements['country'] + "' AND ";
+        }
+        if(ownRequirements['city']){
+            reqArgs += "event.city = '" + ownRequirements['city'] + "' AND ";
+        }
+        if(ownRequirements['postalCode']){
+            reqArgs += "event.postalCode = '" + ownRequirements['postalCode'] + "' AND ";
+        }
+        if(ownRequirements['booking']){
+            reqArgs += "event.booking = " + ownRequirements['booking'] + " AND ";
+        }
+        if(ownRequirements['idClientele']){
+            reqArgs += "clientele.id_data_clientele = " + ownRequirements['idClientele'] + " AND ";
+        }
+        if(ownRequirements['price']){
+            reqArgs += "tarif.price < " + ownRequirements['price'] + " AND ";
+        }
+        if(ownRequirements['idCategorie']){
+            reqArgs += "categorie.id_data_categorie = " + ownRequirements['idCategorie'] + " AND ";
+        }
+
+        if(reqArgs === 'WHERE '){
+            reqArgs = '';
+        }else{
+            reqArgs = reqArgs.substr(0, reqArgs.length - 4);
+        }
+        return db.query(reqBase + reqArgs + ' GROUP BY event.id, event.name', ownRequirements, callback);
     },
 };
 
