@@ -58,7 +58,7 @@ const getEventByUser = (req, res) => {
 
 const getFind = (req, res) => {
     let ownRequirements = {
-        'pseudo_organizer' : null,
+        'pseudoOrganizer' : null,
         'name' : null,
         'dateStart' : null,
         'dateEnd' : null,
