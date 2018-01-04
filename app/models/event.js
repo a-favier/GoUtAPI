@@ -73,7 +73,6 @@ const event={
         }else{
             reqArgs = reqArgs.substr(0, reqArgs.length - 4);
         }
-        console.log(reqBase + reqArgs + ' GROUP BY event.id, event.name');
         return db.query(reqBase + reqArgs + ' GROUP BY event.id, event.name', ownRequirements, callback);
     },
 };
