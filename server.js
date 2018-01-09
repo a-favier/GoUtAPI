@@ -33,6 +33,7 @@ const clienteleRouter = require('./app/routers/clienteleRouter');
 const eventRouter = require('./app/routers/eventRouter');
 const participationRouter = require('./app/routers/participationRouter');
 const tarifRouter = require('./app/routers/tarifRouter');
+const paimentRouter = require('./app/routers/paimentRouter');
 
 /** On créé le router API **/
 const apiRouter = express.Router();
@@ -46,6 +47,7 @@ apiRouter.use('/clientele', clienteleRouter);
 apiRouter.use('/event', eventRouter);
 apiRouter.use('/participation', participationRouter);
 apiRouter.use('/tarif', tarifRouter);
+apiRouter.use('/paiment', paimentRouter);
 
 app.use('/api', apiRouter);
 
