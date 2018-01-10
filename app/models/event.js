@@ -34,8 +34,8 @@ const event={
         reqBase = 'SELECT event.id, event.name FROM gout.event LEFT JOIN clientele ON event.id = clientele.id_event LEFT JOIN tarif ON event.id = tarif.id_event LEFT JOIN categorie ON event.id = categorie.id_event ';
         reqArgs = 'WHERE ';
 
-        if(ownRequirements['pseudo_organizer']){
-            reqArgs += "event.pseudo_organizer LIKE '%" + ownRequirements['pseudo_organizer'] + "%' AND ";
+        if(ownRequirements['pseudoOrganizer']){
+            reqArgs += "event.pseudo_organizer LIKE '%" + ownRequirements['pseudoOrganizer'] + "%' AND ";
         }
         if(ownRequirements['name']){
             reqArgs += "event.name LIKE '%" + ownRequirements['name'] + "%' AND ";
