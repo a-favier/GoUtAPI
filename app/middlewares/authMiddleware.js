@@ -14,7 +14,7 @@ const authMiddleware = (req, res, next) => {
     const authToken = req.headers['auth-token'];
 
     if (!authToken) {
-        res.status(401).send({ success: false, message: 'Authentication required.' });
+        res.status(401).send([{ success: false, message: 'Authentication required.' }]);
     } else {
 
         /** On vérifie la validité du token **/
@@ -22,17 +22,17 @@ const authMiddleware = (req, res, next) => {
             if (err) throw err;
 
             if (!user[0]) {
-                res.status(401).send({ success: false, message: 'Invalid token.' });
+                res.status(401).send([{ success: false, message: 'Invalid token.' }]);
             } else {
                 const actualTime = (new Date()).getTime();
                 const userTime = (new Date(user.validUntil)).getTime();
 
                 if (userTime < actualTime) {
-                    res.status(401).send({ success: false, message: 'Expired token.' });
+                    res.status(401).send([{ success: false, message: 'Expired token.' }]);
                 } else {
                     jwt.verify(authToken, jwtConfig.secret, {}, (err, decoded) => {
                         if (err) {
-                            res.status(401).send({ success: false, message: 'Invalid token' });
+                            res.status(401).send([{ success: false, message: 'Invalid token' }]);
                         } else {
                             let validUntil = new Date((new Date()).setHours((new Date()).getHours() + 1));
 

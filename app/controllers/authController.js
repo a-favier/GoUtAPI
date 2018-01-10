@@ -14,20 +14,20 @@ const login = (req, res) => {
 
     /** On test si on à toutes les info nécessaire à la connexion **/
     if (!pseudo || !password || pseudo === '' || password === '') {
-        res.status(400).send({ success: false, message: 'Both of Username and Password fields are required.' });
+        res.status(400).send([{ success: false, message: 'Both of Username and Password fields are required.' }]);
     } else {
         /** On test le couple password/pseudo **/
         userModel.getPasswordByPseudo(pseudo, (err, user) => {
             if (err) throw err;
 
             if (!user[0]) {
-                res.status(401).send({ success: false, message: 'Wrong Username or Password.' });
+                res.status(401).send([{ success: false, message: 'Wrong Username or Password.' }]);
             } else {
 
                 const isPasswordValid = bcrypt.compareSync(password, user[0].password);
 
                 if (!isPasswordValid) {
-                    res.status(401).send({ success: false, message: 'Wrong Username or Password.' });
+                    res.status(401).send([{ success: false, message: 'Wrong Username or Password.' }]);
                 } else {
 
                     jwt.sign({
@@ -44,7 +44,7 @@ const login = (req, res) => {
                             if (err) throw err;
 
                             /** On retourne le token d'identification **/
-                            res.status(200).send({ success: true, authToken: authToken });
+                            res.status(200).send([{ success: true, authToken: authToken }]);
 
                         })
 
