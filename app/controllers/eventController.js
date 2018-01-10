@@ -13,12 +13,12 @@ const getEvent = (req, res) => {
         user.getUserByToken(authToken, (err, user) => {
             if(err)
             {
-                res.status(400).json(err);
+                res.status(400).json([err]);
             }
             else {
                 event.getEvent(req.params.idEvent, (err, rows) => {
                     if (err) {
-                        res.status(400).json(err);
+                        res.status(400).json([err]);
                     }
                     else {
                         if(user[0].pseudo === rows[0].pseudo_organizer){
@@ -35,7 +35,7 @@ const getEvent = (req, res) => {
     }else{
         event.getEvent(req.params.idEvent, (err, rows) => {
             if (err) {
-                res.status(400).json(err);
+                res.status(400).json([err]);
             }
             else {
                 res.status(200).json(rows);
@@ -48,7 +48,7 @@ const getEventByUser = (req, res) => {
     event.getEventByUser(req.params.pseudo, (err, rows) => {
         if(err)
         {
-            res.status(400).json(err);
+            res.status(400).json([err]);
         }
         else{
             res.status(200).json(rows);
@@ -78,7 +78,7 @@ const getFind = (req, res) => {
     event.globalFind(ownRequirements, (err, rows) => {
         if(err)
         {
-           res.status(400).json(err);
+           res.status(400).json([err]);
         }
         else{
             res.status(200).json(rows);
@@ -90,10 +90,10 @@ const postEvent = (req, res) => {
     event.postEvent(req.params.pseudo, req.body, (err, rows) => {
         if(err)
         {
-            res.status(400).json(err);
+            res.status(400).json([err]);
         }
         else{
-            res.status(201).json({sucess : true, message : "Event : " + req.body.name + " has been create"});
+            res.status(201).json([{sucess : true, message : "Event : " + req.body.name + " has been create"}]);
         }
     });
 };
@@ -102,13 +102,13 @@ const putActive = (req, res) => {
     event.changeActive(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
-            res.status(400).json(err);
+            res.status(400).json([err]);
         }
         else{
             if(rows.affectedRows === 0){
-                res.status(400).json({sucess : false, message : "No active change"})
+                res.status(400).json([{sucess : false, message : "No active change"}])
             }else{
-                res.status(201).json({sucess : true, message : "active has been change"});
+                res.status(201).json([{sucess : true, message : "active has been change"}]);
             }
         }
     });
@@ -118,13 +118,13 @@ const putBooking = (req, res) => {
     event.changeBooking(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
-            res.status(400).json(err);
+            res.status(400).json([err]);
         }
         else{
             if(rows.affectedRows === 0){
-                res.status(400).json({sucess : false, message : "No booking change"})
+                res.status(400).json([{sucess : false, message : "No booking change"}])
             }else{
-                res.status(201).json({sucess : true, message : "booking has been change"});
+                res.status(201).json([{sucess : true, message : "booking has been change"}]);
             }
         }
     });
@@ -134,13 +134,13 @@ const putDescription = (req, res) => {
     event.changeDecription(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
-            res.status(400).json(err);
+            res.status(400).json([err]);
         }
         else{
             if(rows.affectedRows === 0){
-                res.status(400).json({sucess : false, message : "No description change"})
+                res.status(400).json([{sucess : false, message : "No description change"}])
             }else{
-                res.status(201).json({sucess : true, message : "description has been change"});
+                res.status(201).json([{sucess : true, message : "description has been change"}]);
             }
         }
     });
@@ -150,13 +150,13 @@ const putLocal = (req, res) => {
     event.changelocal(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
-            res.status(400).json(err);
+            res.status(400).json([err]);
         }
         else{
             if(rows.affectedRows === 0){
-                res.status(400).json({sucess : false, message : "No localite change"})
+                res.status(400).json([{sucess : false, message : "No localite change"}])
             }else{
-                res.status(201).json({sucess : true, message : "localite has been change"});
+                res.status(201).json([{sucess : true, message : "localite has been change"}]);
             }
         }
     });
@@ -166,13 +166,13 @@ const putDate = (req, res) => {
     event.changeDates(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
-            res.status(400).json(err);
+            res.status(400).json([err]);
         }
         else{
             if(rows.affectedRows === 0){
-                res.status(400).json({sucess : false, message : "No date change"})
+                res.status(400).json([{sucess : false, message : "No date change"}])
             }else{
-                res.status(201).json({sucess : true, message : "date has been change"});
+                res.status(201).json([{sucess : true, message : "date has been change"}]);
             }
         }
     });
@@ -182,13 +182,13 @@ const putName = (req, res) => {
     event.changeName(req.params.idEvent, req.body, (err, rows) => {
         if(err)
         {
-            res.status(400).json(err);
+            res.status(400).json([err]);
         }
         else{
             if(rows.affectedRows === 0){
-                res.status(400).json({sucess : false, message : "No name change"})
+                res.status(400).json([{sucess : false, message : "No name change"}])
             }else{
-                res.status(201).json({sucess : true, message : "name has been change"});
+                res.status(201).json([{sucess : true, message : "name has been change"}]);
             }
         }
     });
