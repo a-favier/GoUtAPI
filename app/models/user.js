@@ -16,10 +16,10 @@ const user={
 
     /** Routes courantes des user **/
     getMe:(pseudo, callback) => {
-        return db.query("SELECT `user`.`pseudo`,  `user`.`firstName`,  `user`.`lastName`, `user`.`dateBorn`, `user`.`mail`, `user`.`tel` FROM `gout`.`user` WHERE `user`.`pseudo` = ?",[pseudo],callback);
+        return db.query("SELECT `user`.`pseudo`,  `user`.`firstName`,  `user`.`lastName`, `user`.`dateBorn`, `user`.`mail`, `user`.`tel`, `user`.`authtoken` FROM `gout`.`user` WHERE `user`.`pseudo` = ?",[pseudo],callback);
     },
     getUserByPseudo:(pseudo, callback) => {
-        return db.query("SELECT `user`.`pseudo`,  `user`.`firstName`,  `user`.`lastName` FROM `gout`.`user` WHERE `user`.`pseudo` = ?",[pseudo],callback);
+        return db.query("SELECT `user`.`pseudo`,  `user`.`firstName`,  `user`.`lastName`, `user`.`dateBorn`, `user`.`mail`, `user`.`tel` FROM `gout`.`user` WHERE `user`.`pseudo` = ?",[pseudo],callback);
     },
     getUsersLikePseudo:(pseudo, callback) => {
         return db.query("SELECT `user`.`pseudo`,  `user`.`firstName`,  `user`.`lastName` FROM `gout`.`user` WHERE `user`.`pseudo` LIKE '%"+[pseudo]+"%'",callback);

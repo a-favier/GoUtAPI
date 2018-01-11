@@ -44,7 +44,16 @@ const login = (req, res) => {
                             if (err) throw err;
 
                             /** On retourne le token d'identification **/
-                            res.status(200).send([{ success: true, authToken: authToken }]);
+                            userModel.getMe(pseudo, (err, rows) => {
+                                if(err)
+                                {
+                                    res.status(400).json([err]);
+                                }
+                                else
+                                {
+                                    res.status(200).json(rows);
+                                }
+                            });
 
                         })
 
