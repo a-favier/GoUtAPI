@@ -93,7 +93,7 @@ const postEvent = (req, res) => {
             res.status(400).json([err]);
         }
         else{
-            res.status(201).json([{sucess : true, message : "Event : " + req.body.name + " has been create"}]);
+            res.status(201).json([{sucess : true, message : "Event : " + req.body.name + " has been create", id : rows.insertId}]);
         }
     });
 };

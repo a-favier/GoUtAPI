@@ -13,7 +13,7 @@ const categorie={
         return db.query("INSERT INTO `gout`.`categorie` (`id_event`,`id_data_categorie`) VALUES (?,?)",[idEvent, categorie.idCategorie], callback);
     },
     deleteEventCategorie:(idEvent, categorie, callback) => {
-        return db.query("DELETE FROM `gout`.`categorie` WHERE id_event = ? AND id = ?", [idEvent, categorie.id], callback);
+        return db.query("DELETE FROM `gout`.`categorie` WHERE id_event = ? AND id_data_categorie = ?", [idEvent, categorie.idCategorie], callback);
     }
 };
 

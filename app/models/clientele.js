@@ -13,7 +13,7 @@ const clientele={
         return db.query("INSERT INTO `gout`.`clientele` (`id_event`,`id_data_clientele`) VALUES (?,?)",[idEvent, clientele.idClientele],callback);
     },
     deleteEventClientele:(idEvent, clientele, callback) => {
-        return db.query("DELETE FROM `gout`.`clientele` WHERE id_event = ? AND id = ?", [idEvent, clientele.id], callback);
+        return db.query("DELETE FROM `gout`.`clientele` WHERE id_event = ? AND id_data_clientele = ?", [idEvent, clientele.idClientele], callback);
     }
 };
 

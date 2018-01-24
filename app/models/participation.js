@@ -15,8 +15,8 @@ const participation={
     addParticipation:(pseudo, event,callback) => {
         return db.query("INSERT INTO `gout`.`participation` (`id_event`,`pseudo_user`) VALUES (?,?)",[event.idEvent, pseudo],callback);
     },
-    removeParticipation:(pseudo, participation, callback) => {
-        return db.query("DELETE FROM `gout`.`participation` WHERE id = ?", [pseudo, participation.id], callback);
+    removeParticipation:(pseudo, event, callback) => {
+        return db.query("DELETE FROM `gout`.`participation` WHERE id_event = ? AND pseudo_user = ?", [event.idEvent, pseudo], callback);
     }
 };
 

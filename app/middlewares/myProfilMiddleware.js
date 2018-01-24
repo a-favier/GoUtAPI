@@ -17,7 +17,7 @@ const authMiddleware = (req, res, next) => {
 
         /** On vérifie que l'utilisateur actuel est bien le propriétaire de la ressource **/
         if(user[0].pseudo !== pseudo){
-            res.status(401).send({ success: false, message: 'You are not owner of this resource'});
+            res.status(401).send([{ success: false, message: 'You are not owner of this resource'}]);
         }else{
             /** Tout est OK, on passe a la suite **/
             next();
