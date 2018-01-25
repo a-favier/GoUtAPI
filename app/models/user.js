@@ -25,7 +25,7 @@ const user={
         return db.query("SELECT `user`.`pseudo`,  `user`.`firstName`,  `user`.`lastName` FROM `gout`.`user` WHERE `user`.`pseudo` LIKE '%"+[pseudo]+"%'",callback);
     },
     addUser:(user, callback) => {
-        return db.query("INSERT INTO `gout`.`user` (`pseudo`, `firstName`, `lastName`, `dateBorn`, `mail`, `tel`, `password`) VALUES (?,?,?,?,?,?,?)",[user.pseudo, user.firstName, user.lasteName, user.dateBorn , user.mail, user.tel, user.password],callback);
+        return db.query("INSERT INTO `gout`.`user` (`pseudo`, `firstName`, `lastName`, `dateBorn`, `mail`, `tel`, `password`) VALUES (?,?,?,?,?,?,?)",[user.pseudo, user.firstName, user.lastName, user.dateBorn , user.mail, user.tel, user.password],callback);
     },
     changeNames:(pseudo, user, callback) => {
         return db.query("UPDATE `gout`.`user` SET `firstName` = ?, `lastName` = ? WHERE `pseudo` = ?",[user.firstName, user.lastName, pseudo],callback);
