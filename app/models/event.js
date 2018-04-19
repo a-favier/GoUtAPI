@@ -31,7 +31,7 @@ const event={
         return db.query("UPDATE `gout`.`event` SET `name` = ? WHERE `id` = ?", [event.name, idEvent], callback);
     },
     globalFind:(ownRequirements, callback) => {
-        reqBase = 'SELECT event.id, event.name FROM gout.event LEFT JOIN clientele ON event.id = clientele.id_event LEFT JOIN tarif ON event.id = tarif.id_event LEFT JOIN categorie ON event.id = categorie.id_event ';
+        reqBase = 'SELECT event.id, event.name, `event`.`pseudo_organizer`, `event`.`description`  FROM gout.event LEFT JOIN clientele ON event.id = clientele.id_event LEFT JOIN tarif ON event.id = tarif.id_event LEFT JOIN categorie ON event.id = categorie.id_event ';
         reqArgs = 'WHERE ';
 
         if(ownRequirements['pseudoOrganizer']){
