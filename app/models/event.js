@@ -4,7 +4,7 @@ const db = require('../config/database');
 /** Déclaration des fonctions **/
 const event={
     getEvent:(idEvent, callback) => {
-        return db.query("SELECT `event`.`id`, `event`.`pseudo_organizer`, `event`.`name`,`event`.`booking`, `event`.`dateStart`,`event`.`dateEnd`, `event`.`country`, `event`.`city`, `event`.`postalCode`, `event`.`adresse`, `event`.`lat`, `event`.`lng`, `event`.`description`, `event`.`active` FROM `gout`.`event` WHERE id = ?",[idEvent],callback);
+        return db.query("SELECT `event`.`id`, `event`.`pseudo_organizer`, `event`.`name`,`event`.`booking`, `event`.`dateStart`,`event`.`dateEnd`, `event`.`country`, `event`.`city`, `event`.`postalCode`, `event`.`adresse`, `event`.`lat`, `event`.`lng`, `event`.`description`, `event`.`active`, (SELECT count(id) FROM participation WHERE id_event =?) as nbParticipation FROM `gout`.`event` WHERE id = ?",[idEvent, idEvent],callback);
     },
     getEventByUser:(pseudo,callback) => {
         return db.query("SELECT `event`.`id`, `event`.`name` FROM `gout`.`event` WHERE pseudo_organizer = ?",[pseudo],callback);
@@ -31,7 +31,7 @@ const event={
         return db.query("UPDATE `gout`.`event` SET `name` = ? WHERE `id` = ?", [event.name, idEvent], callback);
     },
     globalFind:(ownRequirements, callback) => {
-        reqBase = 'SELECT event.id, event.name, `event`.`pseudo_organizer`, `event`.`description`  FROM gout.event LEFT JOIN clientele ON event.id = clientele.id_event LEFT JOIN tarif ON event.id = tarif.id_event LEFT JOIN categorie ON event.id = categorie.id_event ';
+        reqBase = 'SELECT event.id, event.name, `event`.`pseudo_organizer`, `event`.`description`, `event`.`active` FROM gout.event LEFT JOIN clientele ON event.id = clientele.id_event LEFT JOIN tarif ON event.id = tarif.id_event LEFT JOIN categorie ON event.id = categorie.id_event ';
         reqArgs = 'WHERE ';
 
         if(ownRequirements['pseudoOrganizer']){
