@@ -19,7 +19,7 @@ const event={
         return db.query("UPDATE `gout`.`event` SET `booking` = ? WHERE `id` = ?", [event.booking, idEvent], callback);
     },
     changeDecription:(idEvent, event, callback) => {
-        return db.query("UPDATE `gout`.`event` SET `description` = ? WHERE `id` = ?", [event.decription, idEvent], callback);
+        return db.query("UPDATE `gout`.`event` SET `description` = ? WHERE `id` = ?", [event.description, idEvent], callback);
     },
     changelocal:(idEvent, event, callback) => {
         return db.query("UPDATE `gout`.`event` SET `country` = ?, `city` = ?, `postalCode` = ?, `adresse` = ?, `lat` = ?, `lng` = ? WHERE `id` = ?", [event.country, event.city, event.postalCode, event.adresse, event.lat, event.lng, idEvent], callback);

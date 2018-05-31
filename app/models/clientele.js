@@ -10,8 +10,7 @@ const clientele={
         return db.query("SELECT `clientele`.`id_data_clientele` AS 'id', `data_clientele`.`name` FROM `gout`.`clientele` LEFT JOIN `data_clientele` ON `clientele`.`id_data_clientele` = `data_clientele`.`id` WHERE `clientele`.`id_event` = ?",[idEvent],callback);
     },
     addEventClientele:(idEvent, clientele,callback) => {
-        let id =idEvent + clientele.idClientele;
-        return db.query("INSERT INTO `gout`.`clientele` (`id`, `id_event`,`id_data_clientele`) VALUES (?,?,?)",[id, idEvent, clientele.idClientele],callback);
+        return db.query("INSERT INTO `gout`.`clientele` (`id_event`,`id_data_clientele`) VALUES (?,?)",[idEvent, clientele.idClientele],callback);
     },
     deleteEventClientele:(idEvent, clientele, callback) => {
         return db.query("DELETE FROM `gout`.`clientele` WHERE id_event = ? AND id_data_clientele = ?", [idEvent, clientele.idClientele], callback);

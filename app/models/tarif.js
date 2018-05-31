@@ -10,7 +10,7 @@ const tarif={
         return db.query("INSERT INTO `gout`.`tarif`(`id_event`, `name`, `price`) VALUES (?,?,?)",[idEvent, tarif.name, tarif.price],callback);
     },
     removeTarif:(idEvent, tarif,callback) => {
-        return db.query("DELETE FROM `gout`.`tarif` WHERE id = ?;",[idEvent, tarif.id],callback);
+        return db.query("DELETE FROM `gout`.`tarif` WHERE id = ?;",[tarif.id],callback);
     },
 };
 
