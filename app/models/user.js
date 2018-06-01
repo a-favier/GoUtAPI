@@ -24,6 +24,9 @@ const user={
     getUsersLikePseudo:(pseudo, callback) => {
         return db.query("SELECT `user`.`pseudo`,  `user`.`firstName`,  `user`.`lastName` FROM `gout`.`user` WHERE `user`.`pseudo` LIKE '%"+[pseudo]+"%'",callback);
     },
+    getUsersByMail:(mail, callback) => {
+        return db.query("SELECT `user`.`pseudo`  FROM `gout`.`user` WHERE `user`.`mail` = '"+[mail]+"'",callback);
+    },
     addUser:(user, callback) => {
         return db.query("INSERT INTO `gout`.`user` (`pseudo`, `firstName`, `lastName`, `dateBorn`, `mail`, `tel`, `password`) VALUES (?,?,?,?,?,?,?)",[user.pseudo, user.firstName, user.lastName, user.dateBorn , user.mail, user.tel, user.password],callback);
     },

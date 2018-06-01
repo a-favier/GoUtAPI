@@ -42,6 +42,18 @@ const getUsersLikePseudo = (req, res) => {
     })
 };
 
+const getUsersByMail = (req, res) => {
+    user.getUsersByMail(req.params.mail, (err, rows) => {
+        if(err)
+        {
+            res.status(400).json([err]);
+        }
+        else{
+            res.status(200).json(rows);
+        }
+    })
+};
+
 const postUser = (req, res) => {
     req.body.password = bcrypt.hashSync(req.body.password, null);
 
@@ -138,15 +150,47 @@ const putPassword = (req, res) => {
     });
 };
 
+const resetPassword = (req, res) => {
+    $newPass = ChaineAleatoire(8);
+
+    req.body.password = bcrypt.hashSync($newPass, null);
+
+    user.changePassword(req.params.pseudo, req.body, (err, rows) => {
+        if(err)
+        {
+            res.status(400).json([err]);
+        }
+        else{
+            if(rows.affectedRows === 0){
+                res.status(400).json([{sucess : false, message : "No password change"}]);
+            }else{
+                res.status(201).json([{sucess : true, message : $newPass}]);
+            }
+        }
+    });
+};
+
+ChaineAleatoire = (nbcar) => {
+    const ListeCar = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9"];
+    let Chaine ='';
+    for(i = 0; i < nbcar; i++)
+    {
+        Chaine = Chaine + ListeCar[Math.floor(Math.random()*ListeCar.length)];
+    }
+    return Chaine;
+};
+
 /** On exporte le controller **/
 module.exports = {
     getMe: getMe,
     getUser: getUser,
     getUsersLikePseudo: getUsersLikePseudo,
+    getUsersByMail: getUsersByMail,
     postUser: postUser,
     putNames: putNames,
     putMail: putMail,
     putBorn: putBorn,
     putTel: putTel,
-    putPassword: putPassword
+    putPassword: putPassword,
+    resetPassword : resetPassword
 };

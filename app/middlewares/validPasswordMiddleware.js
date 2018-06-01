@@ -9,6 +9,8 @@ const validPasswordMiddleware = (req, res, next) => {
     const pseudo = req.params.pseudo;
     const oldPassword = req.body.old;
 
+    console.log(oldPassword);
+
     User.getPasswordByPseudo(pseudo, (err, user) => {
         if(bcrypt.compareSync(oldPassword, user[0].password)){
             next();
